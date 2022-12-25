@@ -17,17 +17,25 @@
  *
  */
 
-fn fibonacci(num: u32) -> u32 {
+fn fibonacci(num: u32, accum: u32) -> u32 {
     if num == 1 {
         0
     } else if num == 2 {
         1
     } else {
-        fibonacci(num - 2) + fibonacci(num - 1)
+        accum + fibonacci(num - 1, 1)
     }
 }
 
 fn main() {
-    let num = 8;
-    println!("El fibonacci de {} es {}", num, fibonacci(num));
+    // let mut n0 = 0;
+    // let mut n1 = 1;
+    // (1..50).for_each(|n| {
+    //     println!("{} -> {}", n, n0);
+
+    //     let fib = n0 + n1;
+    //     n0 = n1;
+    //     n1 = fib;
+    // })
+    (1..50).for_each(|n| println!("Fibonacci de {} es {}", n, fibonacci(n)))
 }

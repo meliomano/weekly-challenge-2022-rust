@@ -20,7 +20,7 @@
 
 #[allow(dead_code)]
 fn is_anagram(word1: &str, word2: &str) -> bool {
-    if word1 == word2 {
+    if word1.to_lowercase() == word2.to_lowercase() {
         return false;
     }
     let mut chars1: Vec<char> = word1.to_lowercase().chars().collect();
