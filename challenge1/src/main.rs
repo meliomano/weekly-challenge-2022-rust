@@ -18,18 +18,41 @@
 *
 */
 
+#[allow(dead_code)]
 fn is_anagram(word1: &str, word2: &str) -> bool {
     if word1 == word2 {
         return false;
     }
-    let mut word1_sorted = word1.chars().collect::<Vec<char>>();
-    word1_sorted.sort();
-    let mut word2_sorted = word2.chars().collect::<Vec<char>>();
-    word2_sorted.sort();
+    let mut chars1: Vec<char> = word1.to_lowercase().chars().collect();
+    let mut chars2: Vec<char> = word2.to_lowercase().chars().collect();
+    chars1.sort();
+    chars2.sort();
 
-    word1_sorted == word2_sorted
+    chars1 == chars2
 }
 
-fn main() {
-    println!("{}", is_anagram("hola", "ohla"));
+fn main() {}
+
+#[cfg(test)]
+mod tests {
+    // Note this useful idiom: importing names from outer (for mod tests) scope.
+    use super::*;
+
+    #[test]
+    fn test_same_words() {
+        assert_eq!(is_anagram("hola", "hola"), false)
+    }
+
+    #[test]
+    fn test_valid_anagram() {
+        assert_eq!(is_anagram("saco", "caso"), true);
+        assert_eq!(is_anagram("amor", "Roma"), true);
+    }
+
+    #[test]
+    fn test_invalid_anagram() {
+        // This assert would fire and test will fail.
+        // Please note, that private functions can be tested too!
+        assert_eq!(is_anagram("saco", "casco"), false);
+    }
 }
